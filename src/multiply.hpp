@@ -1,5 +1,5 @@
-#ifndef multiply_h
-#define mulitply_h
+#ifndef multiply_hpp
+#define mulitply_hpp
 
 namespace multiply{
     double multiply(double a, double b)

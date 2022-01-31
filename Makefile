@@ -9,11 +9,17 @@ all: clean main
 
 debug: clean main.debug
 
-main:  
-	$(CC) $(CFLAGS) -o $(TARGET)/main.out $(SRC)/main.cpp 
+main: mainloop 
+	$(CC) $(CFLAGS) -o $(TARGET)/main.out $(SRC)/main.cpp $(TARGET)/mainloop.o
 
-main.debug: vectorfunctions.debug 
-	$(CC) $(CFLAGS) -g -o $(TARGET)/main.out $(SRC)/main.cpp 
+mainloop:
+	$(CC) $(CFLAGS) -c -o $(TARGET)/mainloop.o $(SRC)/mainloop.cpp
+
+main.debug: mainloop.debug 
+	$(CC) $(CFLAGS) -g -o $(TARGET)/main.out $(SRC)/main.cpp $(TARGET)/mainloop.o
+
+mainloop.debug: 
+	$(CC) $(CFLAGS) -g -o $(TARGET)/mainloop.o $(SRC)/mainloop.cpp
 
 clean:
 	$(RM) $(TARGET)/*.out
